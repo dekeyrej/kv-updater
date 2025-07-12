@@ -48,7 +48,7 @@ Incoming Message Format (via pub/sub)
 ```
 
 Stored Format (Redis KV)
-```json
+```python
 key = {
   "updated": "2023-10-01T12:00:00Z",
   "valid": true,
