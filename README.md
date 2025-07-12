@@ -5,6 +5,34 @@ This Python service listens to a Redis pub/sub channel, extracts structured data
 ## 📦 Overview
 KVUpdater is designed to handle real-time updates in a Redis-first system. It subscribes to a Redis pub/sub channel, receives JSON-formatted messages, and stores them in Redis using the type field as the key. Optionally, it can validate that the data was correctly written.
 
+## 🧭 Architecture Diagram
+```mermaid
+flowchart LR
+  subgraph Kubernetes
+    Microservice -- PUB update --> Redis
+    Redis -- SUB update --> KV-Updater
+    KV-Updater -- WRITE KV --> Redis
+    Redis -- SUB update --> APIServer
+    APIServer -- READ KV --> Redis
+  end
+  Client -- READ API --> APIServer
+  APIServer -- SSE update --> Client
+style Microservice fill:#08f,color:#fff
+style Redis fill:#e22,color:#fff
+style KV-Updater fill:#eea,color:#000
+style APIServer fill:#3d3,color:#fff
+style Client fill:#fe1,color:#000
+style Kubernetes fill:#fff,stroke:eea,stroke-width:1px,color:#444
+linkStyle 4,5 stroke:#00F,color:blue
+```
+
+🔄 Flow Summary
+- Microservice publishes updates to Redis via pub/sub.
+- KV-Updater subscribes to the update channel and persists structured data to Redis KV.
+- APIServer listens to the same channel and reads from Redis KV to serve clients.
+- Client receives real-time updates via SSE from the APIServer.
+
+
 ## 🔁 Data Flow
 Incoming Message Format (via pub/sub)
 ```json
