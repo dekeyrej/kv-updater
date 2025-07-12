@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kv-updater
+  namespace: default
+  labels:
+    k8s-app: kv-updater
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: kv-updater
+  template:
+    metadata:
+      name: kv-updater
+      labels:
+        k8s-app: kv-updater
+    spec:
+      containers:
+        - name: kv-updater
+          image: ghcr.io/dekeyrej/kv-updater:dev
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 256Mi
+          # ports:
+          # - containerPort: 10255
+          # livenessProbe:
+          #   tcpSocket:
+          #     port: 10255
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 30
+          securityContext:
+            privileged: false
+      imagePullSecrets:
+        - name: ghcr-login-secret
