@@ -39,7 +39,7 @@ Incoming Message Format (via pub/sub)
 {
   "type": "key",
   "updated": "2023-10-01T12:00:00Z",
-  "valid": true,
+  "valid": "2023-10-01T12:05:32Z",
   "values": {
     "field1": "value1",
     "field2": "value2"
@@ -51,7 +51,7 @@ Stored Format (Redis KV)
 ```python
 key = {
   "updated": "2023-10-01T12:00:00Z",
-  "valid": true,
+  "valid": "2023-10-01T12:05:32Z",
   "values": {
     "field1": "value1",
     "field2": "value2"
@@ -79,11 +79,15 @@ config = {
 
 ## 🧪 Usage
 1. Install dependencies
+```sh
 pip install redis
+```
 
 
 2. Run the service
+```sh
 python kv_updater.py
+```
 
 Make sure your config.py is present in the same directory or adjust the import path accordingly.
 

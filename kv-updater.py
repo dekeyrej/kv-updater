@@ -6,7 +6,7 @@ incoming data format:
 {
     "type": "key",
     "updated": "2023-10-01T12:00:00Z",
-    "valid": true,
+    "valid": "2023-10-01T12:05:32Z",
     "values": {
         "field1": "value1",
         "field2": "value2"
@@ -16,7 +16,7 @@ incoming data format:
 stored data format for Redis KV store:
 key = {
         "updated": "2023-10-01T12:00:00Z",
-        "valid": true,
+        "valid": "2023-10-01T12:05:32Z",
         "values": {
             "field1": "value1",
             "field2": "value2"
