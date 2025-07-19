@@ -7,7 +7,6 @@ RUN . /opt/venv/bin/activate
 RUN pip install -r requirements.txt
 #Operational stage
 FROM python:3.12-slim
-# ARG MICROSERVICE
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 
