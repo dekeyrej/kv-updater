@@ -15,4 +15,4 @@ COPY config.py .
 COPY kv-updater.py .
 EXPOSE 10255
 ENV APP=kv-updater.py
-CMD ["sh", "-c", "python /code/${APP}"]
+CMD ["sh", "-c", "python /code/kv-updater.py"]
