@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: kv-updater
-          image: ghcr.io/dekeyrej/kv-updater:dev
+          image: ghcr.io/dekeyrej/kv-updater:latest
           imagePullPolicy: Always
           resources:
             requests:
